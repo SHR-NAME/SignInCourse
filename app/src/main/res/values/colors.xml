@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    第四个颜色开始，分别是指：
+    主页当天课程列表的分割线颜色
+    主页按钮未按下颜色
+    主页按钮按下颜色
+    课程菜单的颜色
+    课程踩点的颜色
+    课程序号文本框背景颜色
+    一个几乎透明的颜色
+    课程按钮的字体颜色
+-->
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="dividerColor">#cc669FC2</color>
+    <color name="framainbuttonColor">#33F5F5F5</color>
+    <color name="framainbuttonColor_press">#cc669FC2</color>
+    <color name="coursemenuColor">#33F5F5F5</color>
+    <color name="coursemenuColor1">#33F5F5F5</color>
+    <color name="courseNumColor">#44ffffff</color>
+    <color name="touming">#10F5F5F5</color>
+    <color name="courseButtonText">#aaF5F5F5</color>
+    <color name="courseInfoBackground">#b0F5F5F5</color>
+    <color name="orderofweekBackground">#d0F5F5F5</color>
+    <color name="changeBackground">#00ffffff</color>
+    <color name="ActionBarBackground">#8B96B5</color>
+
+    <!-- 考勤 -->
+    <color name="primary_black">#6A6A6A</color>
+    <color name="primary_white">#ffffff</color>
+    <color name="marker_bg">#787D82</color>
+    <color name="warningRed">#F37B1D</color>
+    <color name="success_green">#5EB95E</color>
+    <color name="swipe_scheme_color">#0F88EB</color>
+    <color name="swipe_bg_color">#F7FAFC</color>
+    <color name="indecator_color">#0C6BB0</color>
+    <color name="curtain_color">#3894FF</color>
+
+    <!-- 个人中心 -->
+    <color name="divider_9691A2">#8B96B5</color>
+</resources>

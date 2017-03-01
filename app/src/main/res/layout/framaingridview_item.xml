@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/qianDao"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:background="#33F5F5F5">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridviewImageButton"
+        android:scaleType="center"
+        android:src="@drawable/buttonsignin32x32"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gridviewImageButton"
+        android:background="@android:color/transparent"
+        android:id="@+id/gridviewTextView"
+        android:text="签到"/>
+</RelativeLayout>

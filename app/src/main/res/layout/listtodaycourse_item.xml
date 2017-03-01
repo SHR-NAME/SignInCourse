@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/courseTime"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:textColor="#F5F5F5"
+        android:paddingTop="12dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="10dp"
+        android:text="08:30-10:00"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/courseNane"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:textColor="#F5F5F5"
+        android:paddingTop="12dp"
+        android:paddingBottom="6dp"
+        android:text="计算机导论"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/courseAddress"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:textColor="#F5F5F5"
+        android:paddingTop="12dp"
+        android:paddingBottom="6dp"
+        android:text="南201"
+        android:layout_height="wrap_content" />
+</LinearLayout>

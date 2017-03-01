@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">SignInCouse</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tuiChu">退出登录</string>
+    <string name="courseWeekButton">修改当前周</string>
+    <string-array name="OrderOfWeek_array">
+        <item>第一周</item>
+        <item>第二周</item>
+        <item>第三周</item>
+        <item>第四周</item>
+        <item>第五周</item>
+        <item>第六周</item>
+        <item>第七周</item>
+        <item>第八周</item>
+        <item>第九周</item>
+        <item>第十周</item>
+        <item>第十一周</item>
+        <item>第十二周</item>
+        <item>第十三周</item>
+        <item>第十三周</item>
+        <item>第十四周</item>
+        <item>第十五周</item>
+        <item>第十六周</item>
+        <item>第十七周</item>
+        <item>第十八周</item>
+        <item>第十九周</item>
+        <item>第二十周</item>
+    </string-array>
+
+    <!-- 考勤 -->
+    <string name="header_title_name">考勤</string>
+    <string name="sign_course">考勤课程</string>
+    <string name="sign_class">考勤班级</string>
+    <string name="sign_success">创建成功</string>
+    <string name="wait_for_sign">待考勤课程</string>
+    <string name="user_current_location">发起考勤</string>
+    <string name="network_error">网络连接失败！</string>
+    <string name="over_range">超出范围，无法签到！</string>
+    <string name="dialog_confirm">确定</string>
+    <string name="not_need_to_class">今天不用上课哦，:)</string>
+    <string name="attendance_empty">当前考勤为空，不用进行签到 :)</string>
+
+    <!-- 消息中心 -->
+    <string name="my_data">我的资料</string>
+    <string name="my_account">我的账号</string>
+    <string name="my_setting">设置</string>
+    <string name="version">版本信息</string>
+</resources>

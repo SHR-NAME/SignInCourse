@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/theAddPopup"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp"
+        android:paddingRight="1dp"
+        android:paddingLeft="1dp"
+        android:layout_alignParentEnd="true"
+        android:background="@color/orderofweekBackground">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/downloadCourse"
+            android:layout_weight="1"
+            android:text="导入课程表"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/changeBackground"
+            android:text="切换背景图"/>
+    </LinearLayout>
+</RelativeLayout>
