@@ -10,15 +10,17 @@ import com.shr.push.util.PreferencesUtils;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.ChatManagerListener;
+import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.AndFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Presence;
 
+import java.util.concurrent.Executors;
+
 public class PushService extends Service {
 
-    private XMPPConnectionManager mXMPPConnectionManager;
     private XMPPConnection mXMPPConnection;
 
     private CheckConnectionListener mCheckConnectionListener;
@@ -41,8 +43,23 @@ public class PushService extends Service {
         mUserName = PreferencesUtils.getSharePreStr(this, "user");
         mPassword = PreferencesUtils.getSharePreStr(this, "password");
 
-        mXMPPConnectionManager = XMPPConnectionManager.getInstance();
-        initXMPPTask();
+        initXMPP();
+    }
+
+    private void initXMPP() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ConnectionConfiguration connConfig = new ConnectionConfiguration(Contants.XMPP_HOST, Contants.XMPP_PORT);
+                connConfig.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
+                connConfig.setSASLAuthenticationEnabled(false);
+                connConfig.setCompressionEnabled(false);
+                // 允许自动连接
+                connConfig.setReconnectionAllowed(true);
+                mXMPPConnection = new XMPPConnection(connConfig);
+            }
+        }).start();
+
     }
 
     private void initXMPPTask() {
@@ -50,7 +67,7 @@ public class PushService extends Service {
             @Override
             public void run() {
                 try{
-                    mXMPPConnection = mXMPPConnectionManager.init();						//初始化XMPPConnection
+                   						//初始化XMPPConnection
                     loginXMPP();															//登录XMPP
                     ChatManager chatmanager = mXMPPConnection.getChatManager();
                     chatmanager.addChatListener(new ChatManagerListener() {

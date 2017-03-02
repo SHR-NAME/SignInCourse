@@ -16,7 +16,7 @@ import static com.example.administrator.signincouse.service.SocketService.SOCKET
  *
  * Created by shi hao on 2017/2/25.
  */
-
+@Deprecated
 public class SocketAcceptThread extends Thread {
 
     private Context context;

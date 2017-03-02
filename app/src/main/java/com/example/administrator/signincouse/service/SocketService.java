@@ -9,7 +9,7 @@ import android.util.Log;
 /**
  * 开启service
  */
-
+@Deprecated
 public class SocketService extends Service {
 
     public static final String SOCKET_ACTION = "com.shr.socket.action";

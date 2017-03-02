@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         initActionBar();
         initUI();
         //启动服务
-        SocketReceiver socketReceiver = new SocketReceiver(this);
-        IntentFilter socketIntentFilter = new IntentFilter();
-        socketIntentFilter.addAction(SOCKET_RECEIVE);
-        registerReceiver(socketReceiver, socketIntentFilter);
+//        SocketReceiver socketReceiver = new SocketReceiver(this);
+//        IntentFilter socketIntentFilter = new IntentFilter();
+//        socketIntentFilter.addAction(SOCKET_RECEIVE);
+//        registerReceiver(socketReceiver, socketIntentFilter);
 //
 //        // 启动  Socket 服务
 //        startService(new Intent(this, SocketService.class));

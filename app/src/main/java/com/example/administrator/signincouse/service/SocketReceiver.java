@@ -10,7 +10,7 @@ import static com.example.administrator.signincouse.service.SocketService.SOCKET
  *
  * Created by shi hao on 2017/2/25.
  */
-
+@Deprecated
 public class SocketReceiver extends BroadcastReceiver {
 
     private PushManager manager;

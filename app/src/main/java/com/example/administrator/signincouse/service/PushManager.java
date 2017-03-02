@@ -10,7 +10,7 @@ import com.example.administrator.signincouse.R;
  *
  * Created by shi hao on 2017/2/27.
  */
-
+@Deprecated
 public class PushManager {
     private Context context;
     private NotificationManager manager;

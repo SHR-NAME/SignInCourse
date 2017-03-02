@@ -40,19 +40,19 @@ public class XMPPConnectionManager {
      */
     public XMPPConnection init() {
 
-        ConnectionConfiguration connectionConfig = new ConnectionConfiguration(Contants.XMPP_HOST, Contants.XMPP_PORT);
-        // connectionConfig.setSASLAuthenticationEnabled(false);//
-        // 不使用SASL验证，设置为false
-        // connectionConfig
-        // .setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
+        ConnectionConfiguration connConfig = new ConnectionConfiguration(Contants.XMPP_HOST, Contants.XMPP_PORT);
+        connConfig.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
+        connConfig.setSASLAuthenticationEnabled(false);
+        connConfig.setCompressionEnabled(false);
+
         // 允许自动连接
-        connectionConfig.setReconnectionAllowed(true);
+        connConfig.setReconnectionAllowed(true);
         // 允许登陆成功后更新在线状态
-        connectionConfig.setSendPresence(true);
+//        connConfig.setSendPresence(true);
 
         // 收到好友邀请后manual表示需要经过同意,accept_all表示不经同意自动为好友
-        Roster.setDefaultSubscriptionMode(Roster.SubscriptionMode.accept_all);
-        XMPPConnection connection = new XMPPConnection(connectionConfig);
+//        Roster.setDefaultSubscriptionMode(Roster.SubscriptionMode.accept_all);
+        XMPPConnection connection = new XMPPConnection(connConfig);
         return connection;
     }
 

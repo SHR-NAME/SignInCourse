@@ -1,5 +1,7 @@
 package com.shr.push.listener;
 
+import android.util.Log;
+
 import com.shr.push.PushService;
 
 import org.jivesoftware.smack.ConnectionListener;
@@ -20,12 +22,13 @@ public class CheckConnectionListener implements ConnectionListener {
 
     @Override
     public void connectionClosed() {
-        // TODO Auto-generated method stub
-
+        Log.i("connect", "connectionClosed");
     }
 
     @Override
     public void connectionClosedOnError(Exception e) {
+        Log.i("connect", "connectionClosedOnError");
+        e.printStackTrace();
         if (e.getMessage().equals("stream:error (conflict)")) {
 
         }
@@ -33,20 +36,18 @@ public class CheckConnectionListener implements ConnectionListener {
 
     @Override
     public void reconnectingIn(int arg0) {
-        // TODO Auto-generated method stub
+        Log.i("connect", "reconnectingIn");
 
     }
 
     @Override
     public void reconnectionFailed(Exception arg0) {
-        // TODO Auto-generated method stub
-
+        Log.i("connect", "reconnectionFailed");
     }
 
     @Override
     public void reconnectionSuccessful() {
-        // TODO Auto-generated method stub
-
+        Log.i("connect", "reconnectionSuccessful");
     }
 
 }
