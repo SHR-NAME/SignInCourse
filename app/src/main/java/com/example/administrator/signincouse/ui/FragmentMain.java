@@ -158,34 +158,6 @@ public class FragmentMain extends Fragment implements AdapterView.OnItemClickLis
         qingJia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        BufferedWriter writer = null;
-                        Socket socket = null;
-                        try {
-                            socket = new Socket("10.144.16.176", 5222);
-                            String msg = "定义的msg";
-                            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                            writer.write(msg + "\n");
-                            writer.flush();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                if (writer != null) {
-                                    writer.close();
-                                }
-                                if (socket != null) {
-                                    socket.close();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }).start();
-
             }
         });
         lianXi = (RelativeLayout) myView.findViewById(R.id.lianXi);

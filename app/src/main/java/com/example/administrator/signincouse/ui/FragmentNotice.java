@@ -1,13 +1,18 @@
 package com.example.administrator.signincouse.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.administrator.signincouse.R;
 import com.example.administrator.signincouse.model.Course;
@@ -24,7 +29,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class FragmentNotice extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class FragmentNotice extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private View rootView;
     private SwipeRefreshLayout mSwipeLayout;
@@ -53,89 +58,37 @@ public class FragmentNotice extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_notice, container, false);
-        initView();
-        bindView();
-        setContent();
-        setListener();
-        return rootView;
-    }
-
-    private void initView() {
-        mSwipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeLayout);
-        mListView = (ListView) rootView.findViewById(R.id.lv_notice_list);
-    }
-
-    private void bindView() {
-        //设置 刷新圈的颜色
-        mSwipeLayout.setColorSchemeResources(R.color.swipe_scheme_color);
-        //设置 刷新圈的大小
-        mSwipeLayout.setSize(SwipeRefreshLayout.LARGE);
-        mSwipeLayout.setProgressBackgroundColorSchemeResource(R.color.swipe_bg_color);
-        mSwipeLayout.setProgressViewOffset(false, 0, 24);
-        mSwipeLayout.setProgressViewEndTarget(true, 200);
-
-        mCourseList = new ArrayList<>();
-        mNoticeListAdapter = new NoticeListAdapter(getActivity(), mCourseList);
-        mListView.setAdapter(mNoticeListAdapter);
-    }
-
-    private void setContent() {
-        getNoticeList();
-    }
-
-    private void setListener(){
-        mSwipeLayout.setOnRefreshListener(this);
+        return inflater.inflate(R.layout.fragment_notice, container, false);
     }
 
     @Override
-    public void onRefresh() {
-        getNoticeList();
-        mSwipeLayout.setRefreshing(false);
-    }
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final EditText titleEt = (EditText) view.findViewById(R.id.title);
+        final EditText contentEt = (EditText) view.findViewById(R.id.content);
+        Button sendBtn = (Button) view.findViewById(R.id.send);
 
-    private void getNoticeList(){
-        AsyncHttpUtil.get("getAllCourse", null, new JsonHttpResponseHandler() {
+        sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    JSONObject msg = response.optJSONObject("msg");
-                    JSONArray course = msg.optJSONArray("course");
-                    Log.i("HZWING", ">>>>>>>>>>>>>>" + course.toString());
-                    setNoticeList(course);
-                    mNoticeListAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    e.printStackTrace();
+            public void onClick(View v) {
+                String title = titleEt.getText().toString();
+                String content = contentEt.getText().toString();
+                if (TextUtils.isEmpty(title)) {
+                    Toast.makeText(getContext(), "标题不能为空", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                if (TextUtils.isEmpty(content)) {
+                    Toast.makeText(getContext(), "内容不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String msg = "";
+                sendMsg(msg);
             }
         });
     }
 
-    private void setNoticeList(JSONArray course){
-         for (int i = 0; i < course.length(); i++) {
-             JSONObject obj = null;
-             try {
-                 obj = (JSONObject) course.get(i);
-                 Course c = new Course();
-                 c.setCourseID(obj.getInt("courseID"));
-                 c.setCourseName(obj.getString("courseName"));
-                 c.setCourseTeachter(obj.getString("courseTeachter"));
-                 c.setCourseLocation(obj.getString("courseLocation"));
-                 c.setCourseWeekday(obj.getInt("courseWeekday"));
-                 c.setBeginTime(obj.getString("beginTime"));
-                 c.setEndTime(obj.getString("endTime"));
-                 c.setStartWeek(obj.getInt("startWeek"));
-                 c.setEndWeek(obj.getInt("endWeek"));
-                 c.setLocationLongitude(obj.getDouble("locationLongitude"));
-                 c.setLocationLatitude(obj.getDouble("locationLatitude"));
-                 c.setCourseCredit(obj.getInt("courseCredit"));
-                 c.setClassName(obj.getString("className"));
-                 mCourseList.add(c);
-             } catch (JSONException e) {
-                 e.printStackTrace();
-             }
-         }
+    private void sendMsg(String content) {
 
     }
+
 }

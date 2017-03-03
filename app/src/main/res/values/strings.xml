@@ -49,4 +49,7 @@
     <string name="my_account">我的账号</string>
     <string name="my_setting">设置</string>
     <string name="version">版本信息</string>
+    <string name="title">标题</string>
+    <string name="content">内容</string>
+    <string name="send">发送</string>
 </resources>
