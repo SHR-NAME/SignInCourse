@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainbackground"
-    tools:context=".ui.FragmentCouse">
+    tools:context="com.example.signincouse.ui.FragmentCouse">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="asmack">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/push/libs/asmack.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/asmack.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainbackground"
     android:orientation="vertical"
-    tools:context=".ui.FragmentMain">
+    tools:context="com.example.signincouse.ui.FragmentMain">
 
     <RelativeLayout
         android:id="@+id/rViewPager"
