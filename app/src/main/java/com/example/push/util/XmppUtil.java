@@ -92,7 +92,7 @@ public class XmppUtil {
 //			while(it.hasNext()){
 //				row=it.next();
 //				Session session=new Session();
-//				session.setFrom(row.getValues("Username").next().toString());
+//				session.setOrigin(row.getValues("Username").next().toString());
 //				listUser.add(session);
 //			}
 //		}catch(Exception e){

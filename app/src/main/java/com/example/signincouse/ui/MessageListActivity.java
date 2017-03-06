@@ -26,9 +26,8 @@ public class MessageListActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.msg_rv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-
         isTeacher = "teacher".equalsIgnoreCase(PreferencesUtils.getSharePreStr(this, "permission"));
-        String tableName = isTeacher ? DBHelper.TABLE_TEACHER : DBHelper.TABLE_STUDENT;
+
         final DBManager manager = new DBManager(this);
         adapter = new MsgAdapter();
 
@@ -43,7 +42,7 @@ public class MessageListActivity extends AppCompatActivity {
                 super.onPostExecute(messageBodies);
                 adapter.addData(messageBodies);
             }
-        }.execute(tableName);
+        }.execute(DBHelper.TABLE_MSG);
 
         recyclerView.setAdapter(adapter);
 

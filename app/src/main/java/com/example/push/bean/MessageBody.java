@@ -8,7 +8,8 @@ import java.io.Serializable;
  */
 
 public class MessageBody implements Serializable {
-    private String from;
+    private String origin;
+    private String toUser;
     private String title;
     private String content;
     private String time;
@@ -38,12 +39,12 @@ public class MessageBody implements Serializable {
         this.extra = extra;
     }
 
-    public String getFrom() {
-        return from;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getTime() {
@@ -52,5 +53,13 @@ public class MessageBody implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getToUser() {
+        return toUser;
+    }
+
+    public void setToUser(String toUser) {
+        this.toUser = toUser;
     }
 }

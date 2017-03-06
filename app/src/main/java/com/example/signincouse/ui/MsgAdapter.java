@@ -42,7 +42,7 @@ public class MsgAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MsgViewHolder viewHolder = (MsgViewHolder) holder;
         MessageBody messageBody = msgList.get(position);
-        viewHolder.titleTv.setText(messageBody.getTitle()+"    来自" + messageBody.getFrom());
+        viewHolder.titleTv.setText(messageBody.getTitle()+"    来自" + messageBody.getOrigin());
         viewHolder.contentTv.setText(messageBody.getContent());
         viewHolder.timeTv.setText(messageBody.getTime());
     }

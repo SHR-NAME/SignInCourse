@@ -25,13 +25,14 @@ public class DBManager {
         sqLiteDatabase = helper.getWritableDatabase();
     }
 
-    public void insert(String tableName, String name, String title, String content, String time, String extra) {
+    public void insert(String tableName, MessageBody messageBody) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("title", title);
-        contentValues.put("content", content);
-        contentValues.put("time", time);
-        contentValues.put("extra", extra);
+        contentValues.put("to",messageBody.getToUser());
+        contentValues.put("origin", messageBody.getOrigin());
+        contentValues.put("title", messageBody.getTitle());
+        contentValues.put("content", messageBody.getContent());
+        contentValues.put("time", messageBody.getTime());
+        contentValues.put("extra", messageBody.getExtra());
         long id = sqLiteDatabase.insert(tableName, null, contentValues);
         if (id == -1) {
             Log.e("xmpp", "插入数据失败");
@@ -44,7 +45,8 @@ public class DBManager {
         Cursor cursor = sqLiteDatabase.query(tableName, null, null, args, null, null, "id desc");
         while (cursor.moveToNext()) {
             MessageBody body = new MessageBody();
-            body.setFrom(cursor.getString(cursor.getColumnIndex("name")));
+            body.setToUser(cursor.getString(cursor.getColumnIndex("touser")));
+            body.setOrigin(cursor.getString(cursor.getColumnIndex("origin")));
             body.setTitle(cursor.getString(cursor.getColumnIndex("title")));
             body.setContent(cursor.getString(cursor.getColumnIndex("content")));
             body.setTime(cursor.getString(cursor.getColumnIndex("time")));

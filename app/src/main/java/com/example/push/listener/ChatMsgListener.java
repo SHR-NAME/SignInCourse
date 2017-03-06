@@ -33,7 +33,7 @@ public class ChatMsgListener implements MessageListener {
     public void processMessage(Chat chat, Message message) {
         String body = message.getBody();
         MessageBody messageBody = JSONUtil.getObjFromJson(body, MessageBody.class);
-        dbManager.insert(DBHelper.TABLE_STUDENT, messageBody.getFrom(), messageBody.getTitle(), messageBody.getContent(), messageBody.getTime(), messageBody.getExtra());
+        dbManager.insert(DBHelper.TABLE_MSG, messageBody);
         pushManager.buildAndNotifyMsg(messageBody.getTitle(), messageBody.getContent());
     }
 }

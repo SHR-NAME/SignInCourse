@@ -12,10 +12,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "people.db";
+    private static final String DB_NAME = "shr.db";
     private static final int DB_VERSION = 1;
-    public static final String TABLE_STUDENT = "student";
-    public static final String TABLE_TEACHER = "teacher";
+    public static final String TABLE_MSG = "message";
+//    public static final String TABLE_STUDENT = "student";
+//    public static final String TABLE_TEACHER = "teacher";
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -23,16 +24,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists "+TABLE_STUDENT+" (id integer primary key autoincrement,"
-        +"name varchar(20),title varchar(20),content varchar,time varchar,extra varchar)");
-        db.execSQL("create table if not exists "+TABLE_TEACHER+" (id integer primary key autoincrement,"
-                +"name varchar(20),title varchar(20),content varchar,time varchar,extra varchar)");
+        db.execSQL("create table if not exists "+TABLE_MSG+" (id integer primary key autoincrement,"
+        +"origin varchar(20),toUser varchar(20),title varchar(20),content varchar,time varchar,extra varchar)");
+//        db.execSQL("create table if not exists "+TABLE_TEACHER+" (id integer primary key autoincrement,"
+//                +"name varchar(20),title varchar(20),content varchar,time varchar,extra varchar)");
+//        db.execSQL("create table if not exists "+TABLE_MSG+" (id integer primary key autoincrement," +
+//                "origin varchar(20),to varchar(20),title varchar(20),content varchar,time varchar,extra varchar)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists "+TABLE_TEACHER);
-        db.execSQL("drop table if exists "+TABLE_STUDENT);
+        db.execSQL("drop table if exists "+TABLE_MSG);
         onCreate(db);
     }
 }

@@ -91,12 +91,13 @@ public class FragmentNotice extends Fragment {
     }
 
     private void sendMsg(final String title, final String content) {
-        MessageBody body = new MessageBody();
+        final MessageBody body = new MessageBody();
         final String currentTime = getCurrentTime();
         body.setTime(currentTime);
         body.setTitle(title);
         body.setContent(content);
-        body.setFrom(mUserName);
+        body.setOrigin(mUserName);
+        body.setToUser("all");
         body.setExtra("");
         final String msg = JSONUtil.toJSON(body);
         new Thread(new Runnable() {
@@ -104,7 +105,7 @@ public class FragmentNotice extends Fragment {
             public void run() {
                 try {
                     XmppUtil.sendGroupMessage(MyApplication.xmppConnection, msg, Constant.GROUP_JID);
-                    dbManager.insert(DBHelper.TABLE_TEACHER, mUserName, title, content, currentTime, "");
+                    dbManager.insert(DBHelper.TABLE_MSG, body);
                 } catch (XMPPException e) {
                     e.printStackTrace();
                 }
@@ -114,10 +115,9 @@ public class FragmentNotice extends Fragment {
     }
 
     private String getCurrentTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss ");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间
-        String str = formatter.format(curDate);
-        return str;
+        return formatter.format(curDate);
     }
 
 }
