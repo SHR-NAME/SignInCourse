@@ -153,6 +153,8 @@ public class FragmentMain extends Fragment implements AdapterView.OnItemClickLis
         qingJia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AskForLeaveActivity.class);
+                startActivity(intent);
             }
         });
         lianXi = (RelativeLayout) myView.findViewById(R.id.lianXi);

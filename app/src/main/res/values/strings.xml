@@ -52,4 +52,6 @@
     <string name="title">标题</string>
     <string name="content">内容</string>
     <string name="send">发送</string>
+    <string name="ask_for_leave">请假内容</string>
+    <string name="no_more_than_60">不多于60个字</string>
 </resources>

@@ -27,7 +27,7 @@ public class DBManager {
 
     public void insert(String tableName, MessageBody messageBody) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("to",messageBody.getToUser());
+        contentValues.put("toUser",messageBody.getToUser());
         contentValues.put("origin", messageBody.getOrigin());
         contentValues.put("title", messageBody.getTitle());
         contentValues.put("content", messageBody.getContent());
@@ -45,7 +45,7 @@ public class DBManager {
         Cursor cursor = sqLiteDatabase.query(tableName, null, null, args, null, null, "id desc");
         while (cursor.moveToNext()) {
             MessageBody body = new MessageBody();
-            body.setToUser(cursor.getString(cursor.getColumnIndex("touser")));
+            body.setToUser(cursor.getString(cursor.getColumnIndex("toUser")));
             body.setOrigin(cursor.getString(cursor.getColumnIndex("origin")));
             body.setTitle(cursor.getString(cursor.getColumnIndex("title")));
             body.setContent(cursor.getString(cursor.getColumnIndex("content")));

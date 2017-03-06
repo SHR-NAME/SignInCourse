@@ -41,7 +41,7 @@
         <activity
             android:name="com.example.signincouse.ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.signincouse.secondlayer.CourseInfo"
             android:theme="@style/CourseInfoTheme" />
@@ -50,7 +50,7 @@
             android:theme="@style/ChangeBackgroundTheme" />
         <activity
             android:name="com.example.signincouse.secondlayer.ChangeBackground"
-            android:theme="@style/ChangeBackgroundTheme"></activity>
+            android:theme="@style/ChangeBackgroundTheme" />
 
         <!-- 考勤 -->
         <activity android:name="com.example.signincouse.ui.TeacherSignActivity" />
@@ -61,10 +61,11 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
         <service android:name="com.example.push.PushService" />
 
-        <activity android:name="com.example.signincouse.ui.MessageListActivity"></activity>
+        <activity android:name="com.example.signincouse.ui.MessageListActivity" />
+        <activity android:name="com.example.signincouse.ui.AskForLeaveActivity"></activity>
     </application>
 
 </manifest>
