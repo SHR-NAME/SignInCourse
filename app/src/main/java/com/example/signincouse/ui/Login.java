@@ -148,7 +148,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Vi
                     mXMPPConnection.connect();
                     int result = XmppUtil.register(mXMPPConnection, account, password);
                     Log.i("IM", "register" + result);
-                    if (result == 1) {
+                    if (result == 1 || result == 2) {
                         preferences.edit().putBoolean("isLogin", true).apply();
                         startActivity(new Intent(Login.this, MainActivity.class));
                         finish();
