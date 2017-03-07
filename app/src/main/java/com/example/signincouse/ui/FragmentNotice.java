@@ -1,6 +1,8 @@
 package com.example.signincouse.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -37,6 +39,21 @@ public class FragmentNotice extends Fragment {
     public FragmentNotice() {
         // Required empty public constructor
     }
+
+    public Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    Toast.makeText(getActivity(), "发送成功", Toast.LENGTH_SHORT).show();
+                    break;
+                case -1:
+                    Toast.makeText(getActivity(), "发送失败", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 
     public static FragmentNotice newInstance(int sectionNumber) {
         FragmentNotice fragment = new FragmentNotice();
@@ -106,8 +123,10 @@ public class FragmentNotice extends Fragment {
                 try {
                     XmppUtil.sendGroupMessage(MyApplication.xmppConnection, msg, Constant.GROUP_JID);
                     dbManager.insert(DBHelper.TABLE_MSG, body);
+                    handler.sendEmptyMessage(1);
                 } catch (XMPPException e) {
                     e.printStackTrace();
+                    handler.sendEmptyMessage(-1);
                 }
             }
         }).start();
@@ -120,4 +139,9 @@ public class FragmentNotice extends Fragment {
         return formatter.format(curDate);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler = null;
+    }
 }

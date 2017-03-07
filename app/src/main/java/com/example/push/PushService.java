@@ -53,6 +53,8 @@ public class PushService extends Service {
         if (MyApplication.xmppConnection == null) {
             mXMPPManager = XMPPManager.getInstance();
             mXMPPConnection = mXMPPManager.getConnection();
+        } else {
+            mXMPPConnection = MyApplication.xmppConnection;
         }
         initXMPP();
     }

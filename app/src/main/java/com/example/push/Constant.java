@@ -8,7 +8,7 @@ package com.example.push;
 
 public class Constant {
 
-    public static final String XMPP_HOST = "192.168.0.4";
+    public static final String XMPP_HOST = "10.144.35.30";
     public static final int XMPP_PORT = 5222;
 
     public static final String GROUP_JID = "teacher@conference."+XMPP_HOST;

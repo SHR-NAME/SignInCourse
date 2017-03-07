@@ -31,9 +31,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         initScreenWH();
         initActionBar();
         initUI();
-        //启动服务
-        Intent intent=new Intent(this,PushService.class);
-        startService(intent);
     }
 
     private void initActionBar() {

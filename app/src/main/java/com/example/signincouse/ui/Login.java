@@ -8,16 +8,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.signincouse.R;
+import com.example.push.PushService;
 import com.example.push.XMPPManager;
 import com.example.push.util.XmppUtil;
+import com.example.signincouse.MyApplication;
 import com.example.signincouse.toolclass.AsyncHttpUtil;
 import com.example.signincouse.toolclass.Contants;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.shr.filehelper.MyApp;
 
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
@@ -51,6 +55,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Vi
         preferences = getSharedPreferences("login", MODE_PRIVATE);
         Boolean isLogin = preferences.getBoolean("isLogin", false);
         if (isLogin) {
+            //启动服务
+            Intent intent = new Intent(MyApplication.getContext(), PushService.class);
+            startService(intent);
             startActivity(new Intent(Login.this, MainActivity.class));
             finish();
         }
@@ -81,6 +88,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Vi
                         preferences.edit().putString("user", userName).apply();
                         preferences.edit().putString("password", password).apply();
 
+                        //启动服务
+                        Intent intent = new Intent(MyApplication.getContext(), PushService.class);
+                        startService(intent);
                         if (preferences.getBoolean("isLogin", false)) {
                             startActivity(new Intent(Login.this, MainActivity.class));
                             finish();
@@ -143,15 +153,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Vi
         new Thread(new Runnable() {
             @Override
             public void run() {
-                XMPPConnection mXMPPConnection = XMPPManager.getInstance().getConnection();
+                XMPPConnection xmppConnection = XMPPManager.getInstance().getConnection();
                 try {
-                    mXMPPConnection.connect();
-                    int result = XmppUtil.register(mXMPPConnection, account, password);
-                    Log.i("IM", "register" + result);
-                    if (result == 1 || result == 2) {
-                        preferences.edit().putBoolean("isLogin", true).apply();
-                        startActivity(new Intent(Login.this, MainActivity.class));
-                        finish();
+                    MyApplication.xmppConnection = xmppConnection;
+                    xmppConnection.connect();
+                    if (xmppConnection.isConnected()) {
+                        int result = XmppUtil.register(xmppConnection, account, password);
+                        Log.i("IM", "register" + result);
+                        if (result == 1 || result == 2) {
+                            preferences.edit().putBoolean("isLogin", true).apply();
+                            startActivity(new Intent(Login.this, MainActivity.class));
+                            finish();
+                        }
                     }
                 } catch (XMPPException e) {
                     e.printStackTrace();
